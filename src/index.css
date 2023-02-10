@@ -1,0 +1,62 @@
+* {
+	box-sizing: border-box;
+
+	font-family: 'Open Sans', sans-serif;
+}
+
+.action-buttons img {
+	cursor: pointer;
+}
+
+.main {
+	width: 80%;
+
+	margin-inline: auto;
+	margin-block: 3%;
+}
+
+.main__title {
+	font-size: 1.125rem;
+
+	text-align: center;
+}
+
+.organizations {
+	margin-block-start: 3em;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	row-gap: 1.2em;
+	column-gap: 2em;
+}
+
+.organization {
+	display: flex;
+	align-items: center;
+
+	padding-block: 1.4em;
+	padding-inline: 1.8em;
+
+	box-shadow: 0 0 0.5em #e3e1e1;
+
+	border-radius: 0.3em;
+}
+
+.name-and-tin {
+	font-size: 0.875rem;
+
+	margin-inline-start: 2em;
+}
+
+.tin-container {
+	display: flex;
+	gap: 0.8em;
+}
+
+.action-buttons {
+	margin-inline-start: auto;
+}
+
+.action-buttons img + img {
+	margin-inline-start: 1.5em;
+}
