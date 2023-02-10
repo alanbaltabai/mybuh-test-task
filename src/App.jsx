@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Organization from './components/Organization';
-import Modal from './components/Modal';
+import EditModal from './components/EditModal';
+import DeleteModal from './components/DeleteModal';
+
 import logo1 from './assets/logos/logo1.png';
 import logo2 from './assets/logos/logo2.png';
 import logo3 from './assets/logos/logo3.png';
 
 export default function App() {
 	const [organizations, setOrganizations] = useState([]);
+	const [isEditModal, setIsEditModal] = useState(false);
+	const [isDeleteModal, setIsDeleteModal] = useState(false);
+
 	const ownerships = useRef([]);
-	const [isModal, setIsModal] = useState(false);
 	const logos = useRef([logo1, logo2, logo3]);
 
 	useEffect(() => {
@@ -29,7 +33,16 @@ export default function App() {
 	}, []);
 
 	function editOrg(id) {
-		setIsModal(true);
+		setIsEditModal(true);
+		setOrganizations((prev) =>
+			prev.map((item) =>
+				item.company_id === id ? { ...item, isSelected: true } : item
+			)
+		);
+	}
+
+	function deleteOrg(id) {
+		setIsDeleteModal(true);
 		setOrganizations((prev) =>
 			prev.map((item) =>
 				item.company_id === id ? { ...item, isSelected: true } : item
@@ -47,7 +60,8 @@ export default function App() {
 	}
 
 	function closeModal() {
-		setIsModal(false);
+		setIsEditModal(false);
+		setIsDeleteModal(false);
 		setOrganizations((prev) =>
 			prev.map((item) =>
 				item.isSelected ? { ...item, isSelected: false } : item
@@ -61,6 +75,7 @@ export default function App() {
 			key={organization.company_id}
 			ownerships={ownerships.current}
 			editOrg={editOrg}
+			deleteOrg={deleteOrg}
 			logo={giveLogo(i)}
 		/>
 	));
@@ -69,7 +84,8 @@ export default function App() {
 		<div className='main'>
 			<h1 className='main__title'>Мои организации</h1>
 			<div className='organizations'>{organizationsDivs}</div>
-			{isModal && <Modal closeModal={closeModal} />}
+			{isEditModal && <EditModal closeModal={closeModal} />}
+			{isDeleteModal && <DeleteModal closeModal={closeModal} />}
 		</div>
 	);
 }

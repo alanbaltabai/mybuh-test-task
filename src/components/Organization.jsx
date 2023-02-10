@@ -31,7 +31,11 @@ export default function Organization(props) {
 					alt='редактировать'
 					onClick={() => props.editOrg(props.company_id)}
 				/>
-				<img src={delete_icon} alt='удалить' />
+				<img
+					src={delete_icon}
+					alt='удалить'
+					onClick={() => props.deleteOrg(props.company_id)}
+				/>
 			</div>
 		</div>
 	);
