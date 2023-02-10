@@ -7,7 +7,9 @@ export default function Organization(props) {
 	);
 
 	return (
-		<div className='organization'>
+		<div
+			className={props.isSelected ? 'organization-selected' : 'organization'}
+		>
 			<div className='logo-container'>
 				<img src={props.logo} alt='лого организации' />
 			</div>

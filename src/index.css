@@ -30,7 +30,8 @@
 	column-gap: 2em;
 }
 
-.organization {
+.organization,
+.organization-selected {
 	display: flex;
 	align-items: center;
 
@@ -40,6 +41,10 @@
 	box-shadow: 0 0 0.5em #e3e1e1;
 
 	border-radius: 0.3em;
+}
+
+.organization-selected {
+	box-shadow: 0 0 0.5em #005da1;
 }
 
 .name-and-tin {
@@ -58,5 +63,37 @@
 }
 
 .action-buttons img + img {
-	margin-inline-start: 1.5em;
+	margin-inline-start: 1.2em;
+}
+
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 10;
+
+	transform: translate(-50%, -50%);
+
+	border: 0.0625em solid black;
+	border-radius: 2em;
+
+	background-color: #fff;
+
+	text-align: center;
+}
+
+.modal-close {
+	cursor: pointer;
+
+	color: red;
+}
+
+.overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+
+	background-color: rgba(0, 0, 0, 0.5);
 }
