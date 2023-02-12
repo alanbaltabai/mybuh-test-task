@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
 import Organization from './components/Organization';
-import EditModal from './components/EditModal';
-import DeleteModal from './components/DeleteModal';
+import Modal from './components/Modal';
 
 import logo1 from './assets/logos/logo1.png';
 import logo2 from './assets/logos/logo2.png';
@@ -84,8 +83,9 @@ export default function App() {
 		<div className='main'>
 			<h1 className='main__title'>Мои организации</h1>
 			<div className='organizations'>{organizationsDivs}</div>
-			{isEditModal && <EditModal closeModal={closeModal} />}
-			{isDeleteModal && <DeleteModal closeModal={closeModal} />}
+			{(isEditModal || isDeleteModal) && (
+				<Modal closeModal={closeModal} isEditModal={isEditModal} />
+			)}
 		</div>
 	);
 }

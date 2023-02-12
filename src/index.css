@@ -2,9 +2,13 @@
 	box-sizing: border-box;
 
 	font-family: 'Open Sans', sans-serif;
+
+	color: #262626;
 }
 
-.action-buttons img {
+button,
+.action-buttons img,
+.close-modal {
 	cursor: pointer;
 }
 
@@ -96,4 +100,12 @@
 	left: 0;
 
 	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal__delete-title {
+	color: #486377;
+}
+
+.modal__delete-warning {
+	color: #262626;
 }
