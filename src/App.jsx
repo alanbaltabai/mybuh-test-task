@@ -13,7 +13,6 @@ export default function App() {
 	const [isDeleteModal, setIsDeleteModal] = useState(false);
 
 	const ownerships = useRef([]);
-	const logos = useRef([logo1, logo2, logo3]);
 
 	useEffect(() => {
 		fetch(
@@ -26,12 +25,28 @@ export default function App() {
 			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/companies.json'
 		)
 			.then((response) => response.json())
-			.then((data) =>
-				setOrganizations(data.map((item) => ({ ...item, isSelected: false })))
-			);
+			.then((data) => {
+				const logos = [];
+				for (let i = 0, n = 0; i < data.length; i++, n++) {
+					if (n === 0) logos.push(logo1);
+					else if (n === 1) logos.push(logo2);
+					else if (n === 2) {
+						logos.push(logo3);
+						n = -1;
+					}
+				}
+
+				setOrganizations(
+					data.map((item, i) => ({
+						...item,
+						isSelected: false,
+						logo: logos.at(i),
+					}))
+				);
+			});
 	}, []);
 
-	function editOrg(id) {
+	function openEditModal(id) {
 		setIsEditModal(true);
 		setOrganizations((prev) =>
 			prev.map((item) =>
@@ -40,7 +55,7 @@ export default function App() {
 		);
 	}
 
-	function deleteOrg(id) {
+	function openDeleteModal(id) {
 		setIsDeleteModal(true);
 		setOrganizations((prev) =>
 			prev.map((item) =>
@@ -49,18 +64,9 @@ export default function App() {
 		);
 	}
 
-	function giveLogo(i) {
-		if (logos.current.length <= i && i % 3 === 0) return logos.current.at(0);
-		if (logos.current.length <= i && i % 4 === 0) return logos.current.at(1);
-		if (logos.current.length <= i && (i === 7 || i % 5 === 0))
-			return logos.current.at(2);
-
-		return logos.current.at(i);
-	}
-
 	function closeModal() {
-		setIsEditModal(false);
-		setIsDeleteModal(false);
+		if (isEditModal) setIsEditModal(false);
+		if (isDeleteModal) setIsDeleteModal(false);
 		setOrganizations((prev) =>
 			prev.map((item) =>
 				item.isSelected ? { ...item, isSelected: false } : item
@@ -68,14 +74,18 @@ export default function App() {
 		);
 	}
 
+	function deleteOrg(id) {
+		setIsDeleteModal(false);
+		setOrganizations(organizations.filter((item) => item.company_id !== id));
+	}
+
 	const organizationsDivs = organizations.map((organization, i) => (
 		<Organization
 			{...organization}
 			key={organization.company_id}
 			ownerships={ownerships.current}
-			editOrg={editOrg}
-			deleteOrg={deleteOrg}
-			logo={giveLogo(i)}
+			openEditModal={openEditModal}
+			openDeleteModal={openDeleteModal}
 		/>
 	));
 
@@ -84,7 +94,12 @@ export default function App() {
 			<h1 className='main__title'>Мои организации</h1>
 			<div className='organizations'>{organizationsDivs}</div>
 			{(isEditModal || isDeleteModal) && (
-				<Modal closeModal={closeModal} isEditModal={isEditModal} />
+				<Modal
+					isEditModal={isEditModal}
+					company_id={organizations.find((item) => item.isSelected).company_id}
+					closeModal={closeModal}
+					deleteOrg={deleteOrg}
+				/>
 			)}
 		</div>
 	);

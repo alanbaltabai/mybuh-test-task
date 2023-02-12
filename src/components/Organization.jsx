@@ -29,12 +29,12 @@ export default function Organization(props) {
 				<img
 					src={edit_icon}
 					alt='редактировать'
-					onClick={() => props.editOrg(props.company_id)}
+					onClick={() => props.openEditModal(props.company_id)}
 				/>
 				<img
 					src={delete_icon}
 					alt='удалить'
-					onClick={() => props.deleteOrg(props.company_id)}
+					onClick={() => props.openDeleteModal(props.company_id)}
 				/>
 			</div>
 		</div>

@@ -47,7 +47,12 @@ export default function Modal(props) {
 							>
 								Отменить
 							</button>
-							<button className='modal__button-delete'>Удалить</button>
+							<button
+								className='modal__button-delete'
+								onClick={() => props.deleteOrg(props.company_id)}
+							>
+								Удалить
+							</button>
 						</div>
 					</div>
 				)}
