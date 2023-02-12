@@ -4,11 +4,18 @@
 	font-family: 'Open Sans', sans-serif;
 
 	color: #262626;
+
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	max-width: 100%;
 }
 
 button,
 .action-buttons img,
-.close-modal {
+.modal__close {
 	cursor: pointer;
 }
 
@@ -21,17 +28,22 @@ button,
 
 .main__title {
 	font-size: 1.125rem;
+	font-weight: 600;
 
 	text-align: center;
+
+	color: #262626;
+
+	margin-block-end: 0;
 }
 
 .organizations {
-	margin-block-start: 3em;
+	margin-block-start: 2.5em;
 
 	display: grid;
 	grid-template-columns: 1fr 1fr;
-	row-gap: 1.2em;
-	column-gap: 2em;
+	row-gap: 1.25em;
+	column-gap: 1.75em;
 }
 
 .organization,
@@ -39,12 +51,12 @@ button,
 	display: flex;
 	align-items: center;
 
-	padding-block: 1.4em;
-	padding-inline: 1.8em;
+	padding-block: 1.5em;
+	padding-inline: 2em;
 
 	box-shadow: 0 0 0.5em #e3e1e1;
 
-	border-radius: 0.3em;
+	border-radius: 0.375em;
 }
 
 .organization-selected {
@@ -54,12 +66,16 @@ button,
 .name-and-tin {
 	font-size: 0.875rem;
 
-	margin-inline-start: 2em;
+	margin-inline-start: 1.75em;
+
+	color: #262626;
 }
 
 .tin-container {
 	display: flex;
-	gap: 0.8em;
+	gap: 0.625em;
+
+	margin-block-start: 0.75em;
 }
 
 .action-buttons {
@@ -67,7 +83,7 @@ button,
 }
 
 .action-buttons img + img {
-	margin-inline-start: 1.2em;
+	margin-inline-start: 1.25em;
 }
 
 .modal {
@@ -79,17 +95,79 @@ button,
 	transform: translate(-50%, -50%);
 
 	border: 0.0625em solid gray;
-	border-radius: 0.3em;
+	border-radius: 0.375em;
 
 	background-color: #fff;
 
 	text-align: center;
 }
 
-.modal-close {
-	cursor: pointer;
+.modal-delete {
+	padding-block-end: 2.5em;
+	padding-inline-start: 3em;
+}
 
-	color: red;
+.modal__close-delete {
+	display: block;
+
+	margin-inline-start: auto;
+	margin-block-start: 1em;
+	margin-inline-end: 1em;
+}
+
+.modal__container-without-close {
+	margin-inline-end: 3em;
+}
+
+.modal__delete-title {
+	color: #486377;
+
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.modal__delete-warning {
+	color: #262626;
+
+	font-size: 0.875rem;
+
+	margin-block-start: 1.25em;
+}
+
+.modal__delete-buttons {
+	margin-block-start: 1.75em;
+
+	display: flex;
+	gap: 1.25em;
+}
+
+.modal__button-cancel,
+.modal__button-delete {
+	border-radius: 0.25em;
+
+	font-size: 0.875rem;
+
+	padding-block: 0.625em;
+}
+
+.modal__button-cancel {
+	background-color: transparent;
+
+	border: 0.0625em solid #2991dc;
+
+	color: #2991dc;
+
+	padding-inline: 2.5em;
+}
+
+.modal__button-delete {
+	border: none;
+
+	background-color: #2991dc;
+
+	color: #fff;
+
+	padding-inline: 7.125em;
 }
 
 .overlay {
@@ -100,12 +178,4 @@ button,
 	left: 0;
 
 	background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal__delete-title {
-	color: #486377;
-}
-
-.modal__delete-warning {
-	color: #262626;
 }
