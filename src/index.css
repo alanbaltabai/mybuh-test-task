@@ -13,9 +13,18 @@ img {
 	max-width: 100%;
 }
 
+li {
+	list-style: none;
+
+	font-size: 0.875em;
+}
+
 button,
+select,
 .action-buttons img,
-.modal__close {
+.modal__close,
+.taxation,
+.dropdown__option {
 	cursor: pointer;
 }
 
@@ -31,8 +40,6 @@ button,
 	font-weight: 600;
 
 	text-align: center;
-
-	color: #262626;
 
 	margin-block-end: 0;
 }
@@ -67,8 +74,6 @@ button,
 	font-size: 0.875rem;
 
 	margin-inline-start: 1.75em;
-
-	color: #262626;
 }
 
 .tin-container {
@@ -105,8 +110,6 @@ button,
 .modal__edit-title {
 	font-size: 1.125rem;
 	font-weight: 600;
-
-	color: #262626;
 }
 
 .modal__edit-form-container {
@@ -114,6 +117,12 @@ button,
 	margin-inline-end: 2.25em;
 	margin-block-start: 1.5em;
 	margin-block-end: 2.25em;
+}
+
+.modal__edit-form {
+	margin-block-start: 1.75em;
+
+	text-align: left;
 }
 
 .modal__button-org {
@@ -138,9 +147,59 @@ button,
 }
 
 .modal__button-org-unselected {
-	color: #262626;
-
 	background-color: #f2f2f2;
+}
+
+.label-taxation {
+	font-size: 0.75rem;
+
+	color: #808080;
+
+	display: block;
+}
+
+.taxation {
+	font-size: 0.875em;
+
+	border: 0.0625em solid #d1d1d1;
+	border-radius: 0.3125em;
+
+	padding-inline: 1em;
+	padding-block: 0.625em;
+
+	background-image: url('./assets/icons/dropdown.png');
+	background-repeat: no-repeat;
+	background-position: right 1em top 0.625em;
+}
+
+.dropdown {
+	border: 0.0625em solid #d1d1d1;
+	border-radius: 0.3125em;
+
+	margin-block-start: 0.3125em;
+
+	box-shadow: 0 0 0.5em #e3e1e1;
+}
+
+.dropdown__option {
+	padding-block: 0.625em;
+	padding-inline: 1em;
+}
+
+.dropdown__option:hover {
+	background-color: #005da1;
+
+	color: #fff;
+
+	border-radius: 0.0625em;
+}
+
+.dropdown__option + .dropdown__option {
+	/* margin-block-start: 1em; */
+}
+
+.select-container {
+	margin-block-start: 0.25em;
 }
 
 .modal-delete {
@@ -175,8 +234,6 @@ button,
 }
 
 .modal__delete-warning {
-	color: #262626;
-
 	font-size: 0.875rem;
 
 	margin-block-start: 1.25em;

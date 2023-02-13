@@ -13,6 +13,7 @@ export default function App() {
 	const [isDeleteModal, setIsDeleteModal] = useState(false);
 
 	const ownerships = useRef([]);
+	const taxations = useRef([]);
 
 	useEffect(() => {
 		fetch(
@@ -44,6 +45,12 @@ export default function App() {
 					}))
 				);
 			});
+
+		fetch(
+			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/tax-systems.json'
+		)
+			.then((response) => response.json())
+			.then((data) => (taxations.current = data));
 	}, []);
 
 	function openEditModal(id) {
@@ -96,6 +103,7 @@ export default function App() {
 			{(isEditModal || isDeleteModal) && (
 				<Modal
 					isEditModal={isEditModal}
+					taxations={taxations.current}
 					company_id={organizations.find((item) => item.isSelected).company_id}
 					closeModal={closeModal}
 					deleteOrg={deleteOrg}

@@ -1,3 +1,3 @@
 export default function Others() {
-	return <div></div>;
+	return <div>Others</div>;
 }

@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, createElement } from 'react';
 
+import Form from './Form';
 import LLP from './LLP';
 import IE from './IE';
 import Others from './Others';
@@ -28,8 +29,8 @@ export default function Modal(props) {
 	const [currentIndex, setCurrentIndex] = useState(0);
 
 	function toggleForm(i) {
-		// setCurrentIndex(i);
-		console.log(i);
+		setCurrentIndex(i);
+
 		setOptions((prev) =>
 			prev.map((item, index) =>
 				index === i
@@ -38,8 +39,6 @@ export default function Modal(props) {
 			)
 		);
 	}
-
-	console.log(options);
 
 	return (
 		<>
@@ -75,7 +74,15 @@ export default function Modal(props) {
 									{item.name}
 								</button>
 							))}
-							{}
+							<Form currentIndex={currentIndex}>
+								{options.map((item) => (
+									<form className='modal__edit-form' key={crypto.randomUUID()}>
+										{createElement(item.component, {
+											taxations: props.taxations,
+										})}
+									</form>
+								))}
+							</Form>
 						</div>
 					</div>
 				) : (

@@ -1,3 +1,3 @@
 export default function IE() {
-	return <div></div>;
+	return <div>IE</div>;
 }
