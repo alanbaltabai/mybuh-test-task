@@ -2,18 +2,29 @@ import { useState } from 'react';
 
 export default function LLP(props) {
 	const [isDropdown, setIsDropdown] = useState(false);
-
-	const taxationsCopy = props.taxations.filter((item, i) => i !== 0);
+	const [formData, setFormData] = useState({
+		taxation: props.taxations.at(0).full,
+	});
 
 	const dropdown = (
 		<ul className='dropdown'>
-			{taxationsCopy.map((item) => (
-				<li className='dropdown__option' key={crypto.randomUUID()}>
+			{props.taxations.map((item) => (
+				<li
+					taxation={item.full}
+					className='dropdown__option'
+					onClick={() => handleTaxOptionClick(item.full)}
+					key={crypto.randomUUID()}
+				>
 					{item.full}
 				</li>
 			))}
 		</ul>
 	);
+
+	function handleTaxOptionClick(full) {
+		setFormData((prev) => ({ ...prev, taxation: full }));
+		setIsDropdown(false);
+	}
 
 	return (
 		<>
@@ -27,7 +38,7 @@ export default function LLP(props) {
 						onClick={() => setIsDropdown((prev) => !prev)}
 						id='taxation'
 					>
-						{props.taxations.at(0).full}
+						{formData.taxation}
 					</div>
 
 					{isDropdown && dropdown}
