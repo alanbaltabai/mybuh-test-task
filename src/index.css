@@ -198,8 +198,9 @@ select,
 	margin-block-start: 0.25em;
 }
 
-.tin-input-label-container {
-	margin-block-start: 1em;
+.tin-input-label-container,
+.orgname-input-label-container {
+	margin-block-start: 1.25em;
 }
 
 .tin-input {
@@ -212,6 +213,36 @@ select,
 
 	padding-inline: 1em;
 	padding-block: 0.625em;
+}
+
+.orgname-container {
+	display: flex;
+}
+
+.orgname-orgform {
+	font-size: 0.875em;
+
+	border: 0.0625em solid #d1d1d1;
+	border-top-left-radius: 0.3125em;
+	border-bottom-left-radius: 0.3125em;
+
+	padding-inline: 1em;
+	padding-block: 0.625em;
+}
+
+.orgname-input {
+	width: auto;
+
+	font-size: 0.875em;
+
+	padding-inline: 1em;
+	padding-block: 0.625em;
+
+	border: 0.0625em solid #d1d1d1;
+	border-top-right-radius: 0.3125em;
+	border-bottom-right-radius: 0.3125em;
+
+	flex: 1;
 }
 
 .modal-delete {

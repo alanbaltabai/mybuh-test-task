@@ -5,6 +5,7 @@ export default function LLP(props) {
 	const [formData, setFormData] = useState({
 		taxation: props.taxations.at(0).full,
 		tinInput: '',
+		orgnameInput: '',
 	});
 
 	const dropdown = (
@@ -27,7 +28,7 @@ export default function LLP(props) {
 		setIsDropdown(false);
 	}
 
-	function handleTinInputChange(event) {
+	function handleInputChange(event) {
 		setFormData((prev) => ({
 			...prev,
 			[event.target.name]: event.target.value,
@@ -65,7 +66,24 @@ export default function LLP(props) {
 						id='tin-input'
 						value={formData.tinInput}
 						name='tinInput'
-						onChange={handleTinInputChange}
+						onChange={handleInputChange}
+					/>
+				</div>
+			</div>
+
+			<div className='orgname-input-label-container'>
+				<label className='label-taxation' htmlFor='orgname-input'>
+					Введите название компании
+				</label>
+
+				<div className='select-container orgname-container'>
+					<span className='orgname-orgform'>ТОО</span>
+					<input
+						className='orgname-input'
+						id='orgname-input'
+						value={formData.orgnameInput}
+						name='orgnameInput'
+						onChange={handleInputChange}
 					/>
 				</div>
 			</div>
