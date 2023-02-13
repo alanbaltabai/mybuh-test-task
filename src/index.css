@@ -173,6 +173,10 @@ select,
 }
 
 .dropdown {
+	max-height: 7.5em;
+
+	overflow-y: scroll;
+
 	border: 0.0625em solid #d1d1d1;
 	border-radius: 0.3125em;
 
@@ -241,6 +245,7 @@ select,
 	border: 0.0625em solid #d1d1d1;
 	border-top-right-radius: 0.3125em;
 	border-bottom-right-radius: 0.3125em;
+	border-left: none;
 
 	flex: 1;
 }
@@ -261,6 +266,7 @@ select,
 	padding-block: 0.75em;
 
 	border: none;
+	border-radius: 0.25em;
 }
 
 .modal-delete {

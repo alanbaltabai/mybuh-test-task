@@ -50,7 +50,6 @@ export default function LLP(props) {
 					>
 						{formData.taxation}
 					</div>
-
 					{isDropdown && dropdown}
 				</div>
 			</div>
