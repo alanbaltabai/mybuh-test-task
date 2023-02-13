@@ -7,33 +7,77 @@ import Others from './Others';
 import closeModal from '../assets/icons/close.png';
 
 export default function Modal(props) {
-	const [options, setOptions] = useState(
+	const [options, setOptions] = useState([
 		{
-			name: 'LLP',
+			name: 'ТОО',
 			component: LLP,
+			isSelected: true,
 		},
 		{
-			name: 'IE',
+			name: 'ИП',
 			component: IE,
+			isSelected: false,
 		},
 		{
-			name: 'Others',
+			name: 'Прочие',
 			component: Others,
-		}
-	);
+			isSelected: false,
+		},
+	]);
+
+	const [currentIndex, setCurrentIndex] = useState(0);
+
+	function toggleForm(i) {
+		// setCurrentIndex(i);
+		console.log(i);
+		setOptions((prev) =>
+			prev.map((item, index) =>
+				index === i
+					? { ...item, isSelected: true }
+					: { ...item, isSelected: false }
+			)
+		);
+	}
+
+	console.log(options);
 
 	return (
 		<>
-			<div className='modal modal-delete'>
+			<div
+				className={`modal ${props.isEditModal ? `modal-edit` : `modal-delete`}`}
+			>
 				<img
-					className='modal__close modal__close-delete modal__close-edit'
+					className={`modal__close ${
+						props.isEditModal ? `modal__close-edit` : `modal__close-delete`
+					}`}
 					src={closeModal}
 					alt='закрыть модальное окно'
 					onClick={() => props.closeModal()}
 				/>
 
 				{props.isEditModal ? (
-					<h2>Редактировать данные организации</h2>
+					<div className='modal__container-without-close-edit'>
+						<h2 className='modal__edit-title'>
+							Редактировать данные организации
+						</h2>
+						<div className='modal__edit-form-container'>
+							{options.map((item, i) => (
+								<button
+									className={`modal__button-org ${
+										item.isSelected
+											? `modal__button-org-selected`
+											: `modal__button-org-unselected`
+									}`}
+									key={crypto.randomUUID()}
+									onClick={() => toggleForm(i)}
+									id={i}
+								>
+									{item.name}
+								</button>
+							))}
+							{}
+						</div>
+					</div>
 				) : (
 					<div className='modal__container-without-close'>
 						<h2 className='modal__delete-title'>Удаление организации</h2>

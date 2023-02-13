@@ -102,17 +102,65 @@ button,
 	text-align: center;
 }
 
+.modal__edit-title {
+	font-size: 1.125rem;
+	font-weight: 600;
+
+	color: #262626;
+}
+
+.modal__edit-form-container {
+	margin-inline-start: 2.25em;
+	margin-inline-end: 2.25em;
+	margin-block-start: 1.5em;
+	margin-block-end: 2.25em;
+}
+
+.modal__button-org {
+	font-size: 1rem;
+
+	border-radius: 0.3125em;
+
+	border: none;
+
+	padding-inline: 3.8959375em;
+	padding-block: 0.75em;
+}
+
+.modal__button-org + .modal__button-org {
+	margin-inline-start: 0.75em;
+}
+
+.modal__button-org-selected {
+	color: #fff;
+
+	background-color: #005da1;
+}
+
+.modal__button-org-unselected {
+	color: #262626;
+
+	background-color: #f2f2f2;
+}
+
 .modal-delete {
 	padding-block-end: 2.5em;
 	padding-inline-start: 3em;
 }
 
-.modal__close-delete {
+.modal__close {
 	display: block;
 
 	margin-inline-start: auto;
-	margin-block-start: 1em;
 	margin-inline-end: 1em;
+}
+
+.modal__close-edit {
+	margin-block-start: 1.25em;
+}
+
+.modal__close-delete {
+	margin-block-start: 1em;
 }
 
 .modal__container-without-close {
