@@ -194,12 +194,24 @@ select,
 	border-radius: 0.0625em;
 }
 
-.dropdown__option + .dropdown__option {
-	/* margin-block-start: 1em; */
-}
-
 .select-container {
 	margin-block-start: 0.25em;
+}
+
+.tin-input-label-container {
+	margin-block-start: 1em;
+}
+
+.tin-input {
+	width: 100%;
+
+	font-size: 0.875em;
+
+	border: 0.0625em solid #d1d1d1;
+	border-radius: 0.3125em;
+
+	padding-inline: 1em;
+	padding-block: 0.625em;
 }
 
 .modal-delete {
