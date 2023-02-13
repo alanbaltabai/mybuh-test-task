@@ -87,6 +87,8 @@ export default function LLP(props) {
 					/>
 				</div>
 			</div>
+
+			<button className='modal__button-save'>Сохранить</button>
 		</>
 	);
 }

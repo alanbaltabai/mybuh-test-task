@@ -116,7 +116,7 @@ select,
 	margin-inline-start: 2.25em;
 	margin-inline-end: 2.25em;
 	margin-block-start: 1.5em;
-	margin-block-end: 2.25em;
+	margin-block-end: 1.75em;
 }
 
 .modal__edit-form {
@@ -243,6 +243,24 @@ select,
 	border-bottom-right-radius: 0.3125em;
 
 	flex: 1;
+}
+
+.modal__button-save {
+	display: block;
+
+	margin-inline: auto;
+	margin-block-start: 1.75em;
+
+	background-color: #009a3e;
+
+	color: #fff;
+
+	font-size: 0.875em;
+
+	padding-inline: 3em;
+	padding-block: 0.75em;
+
+	border: none;
 }
 
 .modal-delete {
