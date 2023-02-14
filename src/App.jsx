@@ -95,8 +95,6 @@ export default function App() {
 		closeModal();
 	}
 
-	// console.log(organizations);
-
 	function deleteOrg(id) {
 		setIsDeleteModal(false);
 		setOrganizations(organizations.filter((item) => item.company_id !== id));
@@ -120,6 +118,7 @@ export default function App() {
 				<Modal
 					isEditModal={isEditModal}
 					taxations={taxations.current}
+					ownerships={ownerships}
 					company_id={organizations.find((item) => item.isSelected).company_id}
 					closeModal={closeModal}
 					deleteOrg={deleteOrg}

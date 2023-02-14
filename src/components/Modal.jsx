@@ -79,6 +79,7 @@ export default function Modal(props) {
 									<div className='modal__edit-form' key={crypto.randomUUID()}>
 										{createElement(item.component, {
 											taxations: props.taxations,
+											ownerships: props.ownerships,
 											saveEdits: props.saveEdits,
 										})}
 									</div>
