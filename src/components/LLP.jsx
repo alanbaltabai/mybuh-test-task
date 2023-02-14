@@ -87,7 +87,14 @@ export default function LLP(props) {
 				</div>
 			</div>
 
-			<button className='modal__button-save'>Сохранить</button>
+			<button
+				className='modal__button-save'
+				onClick={() =>
+					props.saveEdits(formData.orgnameInput, formData.tinInput, 1)
+				}
+			>
+				Сохранить
+			</button>
 		</>
 	);
 }

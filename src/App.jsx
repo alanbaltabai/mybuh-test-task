@@ -81,6 +81,22 @@ export default function App() {
 		);
 	}
 
+	function saveEdits(name, tin, form) {
+		setOrganizations((prev) =>
+			prev.map((item) => {
+				if (name === '') name = item.company_name;
+				if (tin === '') tin = item.company_tin;
+
+				if (item.isSelected)
+					return { ...item, company_name: name, form_id: form };
+				else return item;
+			})
+		);
+		closeModal();
+	}
+
+	// console.log(organizations);
+
 	function deleteOrg(id) {
 		setIsDeleteModal(false);
 		setOrganizations(organizations.filter((item) => item.company_id !== id));
@@ -107,6 +123,7 @@ export default function App() {
 					company_id={organizations.find((item) => item.isSelected).company_id}
 					closeModal={closeModal}
 					deleteOrg={deleteOrg}
+					saveEdits={saveEdits}
 				/>
 			)}
 		</div>

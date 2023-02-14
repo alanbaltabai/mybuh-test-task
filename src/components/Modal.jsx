@@ -76,11 +76,12 @@ export default function Modal(props) {
 							))}
 							<Form currentIndex={currentIndex}>
 								{options.map((item) => (
-									<form className='modal__edit-form' key={crypto.randomUUID()}>
+									<div className='modal__edit-form' key={crypto.randomUUID()}>
 										{createElement(item.component, {
 											taxations: props.taxations,
+											saveEdits: props.saveEdits,
 										})}
-									</form>
+									</div>
 								))}
 							</Form>
 						</div>
