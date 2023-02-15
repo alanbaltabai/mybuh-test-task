@@ -204,8 +204,13 @@ select,
 
 .taxation-input-label-container,
 .tin-input-label-container,
-.orgname-input-label-container {
+.orgname-input-label-container,
+.ownership-input-label-container {
 	margin-block-start: 1.25em;
+}
+
+.inputs-container {
+	margin-block-start: 1.75em;
 }
 
 .tin-input {

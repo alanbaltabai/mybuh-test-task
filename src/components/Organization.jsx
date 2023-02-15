@@ -3,7 +3,7 @@ import delete_icon from '../assets/icons/delete_icon.png';
 
 export default function Organization(props) {
 	const ownership = props.ownerships.find(
-		(ownership) => ownership.id === props.form_id
+		(item) => item.id === props.company_id
 	);
 
 	return (

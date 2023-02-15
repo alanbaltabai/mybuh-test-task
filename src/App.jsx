@@ -20,7 +20,9 @@ export default function App() {
 			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/ownerships.json'
 		)
 			.then((response) => response.json())
-			.then((data) => (ownerships.current = data));
+			.then((data) => {
+				ownerships.current = data;
+			});
 
 		fetch(
 			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/companies.json'
@@ -42,6 +44,7 @@ export default function App() {
 						...item,
 						isSelected: false,
 						logo: logos.at(i),
+						key: crypto.randomUUID(),
 					}))
 				);
 			});
@@ -81,15 +84,19 @@ export default function App() {
 		);
 	}
 
-	function saveEdits(name, tin, form) {
+	function saveEdits(name, tin, id) {
 		setOrganizations((prev) =>
 			prev.map((item) => {
-				if (name === '') name = item.company_name;
-				if (tin === '') tin = item.company_tin;
-
-				if (item.isSelected)
-					return { ...item, company_name: name, form_id: form };
-				else return item;
+				if (item.isSelected) {
+					if (name === '') name = item.company_name;
+					if (tin === '') tin = item.company_tin;
+					return {
+						...item,
+						company_name: name,
+						company_tin: tin,
+						company_id: id,
+					};
+				} else return item;
 			})
 		);
 		closeModal();
@@ -103,7 +110,7 @@ export default function App() {
 	const organizationsDivs = organizations.map((organization, i) => (
 		<Organization
 			{...organization}
-			key={organization.company_id}
+			key={crypto.randomUUID()}
 			ownerships={ownerships.current}
 			openEditModal={openEditModal}
 			openDeleteModal={openDeleteModal}
@@ -118,7 +125,7 @@ export default function App() {
 				<Modal
 					isEditModal={isEditModal}
 					taxations={taxations.current}
-					ownerships={ownerships}
+					ownerships={ownerships.current}
 					company_id={organizations.find((item) => item.isSelected).company_id}
 					closeModal={closeModal}
 					deleteOrg={deleteOrg}

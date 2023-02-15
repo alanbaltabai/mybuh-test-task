@@ -1,19 +1,20 @@
 import { useState } from 'react';
 
 export default function Others(props) {
-	const [isDropdown, setIsDropdown] = useState(false);
+	const [isTaxDropdown, setIsTaxDropdown] = useState(false);
+	const [isOwnershipDropdown, setIsOwnershipDropdown] = useState(false);
 	const [formData, setFormData] = useState({
+		ownership: props.ownerships.at(0).full,
 		taxation: props.taxations.at(0).full,
 		tinInput: '',
 		orgnameInput: '',
 		subtype: 'Юридические лица',
 	});
 
-	const dropdown = (
+	const taxDropdown = (
 		<ul className='dropdown'>
 			{props.taxations.map((item) => (
 				<li
-					taxation={item.full}
 					className='dropdown__option'
 					onClick={() => handleTaxOptionClick(item.full)}
 					key={crypto.randomUUID()}
@@ -24,9 +25,28 @@ export default function Others(props) {
 		</ul>
 	);
 
+	const ownershipDropdown = (
+		<ul className='dropdown'>
+			{props.ownerships.map((item) => (
+				<li
+					className='dropdown__option'
+					onClick={() => handleOwnershipOptionClick(item.full)}
+					key={crypto.randomUUID()}
+				>
+					{item.full}
+				</li>
+			))}
+		</ul>
+	);
+
 	function handleTaxOptionClick(full) {
 		setFormData((prev) => ({ ...prev, taxation: full }));
-		setIsDropdown(false);
+		setIsTaxDropdown(false);
+	}
+
+	function handleOwnershipOptionClick(full) {
+		setFormData((prev) => ({ ...prev, ownership: full }));
+		setIsOwnershipDropdown(false);
 	}
 
 	function handleInputChange(event) {
@@ -36,12 +56,24 @@ export default function Others(props) {
 		}));
 	}
 
-	function returnShortForm() {
-		return formData.subtype
-			.split(' ')
-			.map((item) => item[0].toUpperCase())
-			.join('');
+	function returnForm() {
+		if (formData.subtype === 'Физические лица') return 'ФЛ';
+		for (let i = 0; i < props.ownerships.length; i++) {
+			if (props.ownerships[i].full === formData.ownership)
+				return props.ownerships[i].short;
+		}
 	}
+
+	function returnShortForm() {
+		if (formData.subtype === 'Физические лица') return 20;
+
+		for (let i = 0; i < props.ownerships.length; i++) {
+			if (props.ownerships[i].full === formData.ownership)
+				return props.ownerships[i].id;
+		}
+	}
+
+	const formId = returnShortForm();
 
 	return (
 		<>
@@ -110,60 +142,83 @@ export default function Others(props) {
 				</div>
 			</div>
 
-			<div className='taxation-input-label-container'>
-				<label className='label-taxation' htmlFor='taxation'>
-					Выберите систему налогообложения
-				</label>
+			<div className='inputs-container'>
+				{formData.subtype !== 'Физические лица' && (
+					<div className='ownership-input-label-container'>
+						<label className='label-taxation' htmlFor='ownership'>
+							Выберите форму собственности
+						</label>
 
-				<div className='select-container'>
-					<div
-						className='taxation'
-						onClick={() => setIsDropdown((prev) => !prev)}
-						id='taxation'
-					>
-						{formData.taxation}
+						<div className='select-container'>
+							<div
+								className='taxation'
+								id='ownership'
+								onClick={() => setIsOwnershipDropdown((prev) => !prev)}
+							>
+								{formData.ownership}
+							</div>
+							{isOwnershipDropdown && ownershipDropdown}
+						</div>
 					</div>
-					{isDropdown && dropdown}
+				)}
+
+				{formData.subtype === 'Юридические лица' && (
+					<div className='taxation-input-label-container'>
+						<label className='label-taxation' htmlFor='taxation'>
+							Выберите систему налогообложения
+						</label>
+
+						<div className='select-container'>
+							<div
+								className='taxation'
+								id='taxation'
+								onClick={() => setIsTaxDropdown((prev) => !prev)}
+							>
+								{formData.taxation}
+							</div>
+							{isTaxDropdown && taxDropdown}
+						</div>
+					</div>
+				)}
+
+				<div className='tin-input-label-container'>
+					<label className='label-taxation' htmlFor='tin-input'>
+						Введите ИИН/БИН
+					</label>
+
+					<div className='select-container'>
+						<input
+							className='tin-input'
+							id='tin-input'
+							value={formData.tinInput}
+							name='tinInput'
+							onChange={handleInputChange}
+						/>
+					</div>
 				</div>
-			</div>
 
-			<div className='tin-input-label-container'>
-				<label className='label-taxation' htmlFor='tin-input'>
-					Введите ИИН/БИН
-				</label>
+				<div className='orgname-input-label-container'>
+					<label className='label-taxation' htmlFor='orgname-input'>
+						Введите название компании
+					</label>
 
-				<div className='select-container'>
-					<input
-						className='tin-input'
-						id='tin-input'
-						value={formData.tinInput}
-						name='tinInput'
-						onChange={handleInputChange}
-					/>
-				</div>
-			</div>
-
-			<div className='orgname-input-label-container'>
-				<label className='label-taxation' htmlFor='orgname-input'>
-					Введите название компании
-				</label>
-
-				<div className='select-container orgname-container'>
-					<span className='orgname-orgform'>{returnShortForm()}</span>
-					<input
-						className='orgname-input'
-						id='orgname-input'
-						value={formData.orgnameInput}
-						name='orgnameInput'
-						onChange={handleInputChange}
-					/>
+					<div className='select-container orgname-container'>
+						<span className='orgname-orgform'>{returnForm()}</span>
+						<input
+							className='orgname-input'
+							id='orgname-input'
+							value={formData.orgnameInput}
+							name='orgnameInput'
+							onChange={handleInputChange}
+						/>
+					</div>
 				</div>
 			</div>
 
 			<button
 				className='modal__button-save'
 				onClick={() =>
-					props.saveEdits(formData.orgnameInput, formData.tinInput, 14)
+					props.saveEdits(formData.orgnameInput, formData.tinInput, formId)
 				}
 			>
 				Сохранить
