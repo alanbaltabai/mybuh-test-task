@@ -20,30 +20,18 @@ export default function App() {
 			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/ownerships.json'
 		)
 			.then((response) => response.json())
-			.then((data) => {
-				ownerships.current = data;
-			});
+			.then((data) => (ownerships.current = data));
 
 		fetch(
 			'https://raw.githubusercontent.com/arkdich/mybuh-frontend-test/main/companies.json'
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				const logos = [];
-				for (let i = 0, n = 0; i < data.length; i++, n++) {
-					if (n === 0) logos.push(logo1);
-					else if (n === 1) logos.push(logo2);
-					else if (n === 2) {
-						logos.push(logo3);
-						n = -1;
-					}
-				}
-
 				setOrganizations(
 					data.map((item, i) => ({
 						...item,
 						isSelected: false,
-						logo: logos.at(i),
+						logo: placeLogos(data, logo1, logo2, logo3).at(i),
 						key: crypto.randomUUID(),
 					}))
 				);
@@ -55,6 +43,16 @@ export default function App() {
 			.then((response) => response.json())
 			.then((data) => (taxations.current = data));
 	}, []);
+
+	function placeLogos(data, ...params) {
+		const logos = [];
+		for (let i = 0, n = 0; i < data.length; i++, n++) {
+			logos.push(params.at(n));
+			if (n === params.length - 1) n = -1;
+		}
+
+		return logos;
+	}
 
 	function openEditModal(id) {
 		setIsEditModal(true);
