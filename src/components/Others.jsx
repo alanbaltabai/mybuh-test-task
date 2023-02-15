@@ -36,7 +36,12 @@ export default function Others(props) {
 		}));
 	}
 
-	console.log(formData.subtype);
+	function returnShortForm() {
+		return formData.subtype
+			.split(' ')
+			.map((item) => item[0].toUpperCase())
+			.join('');
+	}
 
 	return (
 		<>
@@ -144,7 +149,7 @@ export default function Others(props) {
 				</label>
 
 				<div className='select-container orgname-container'>
-					<span className='orgname-orgform'>ИП</span>
+					<span className='orgname-orgform'>{returnShortForm()}</span>
 					<input
 						className='orgname-input'
 						id='orgname-input'
