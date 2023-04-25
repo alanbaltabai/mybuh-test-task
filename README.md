@@ -23,9 +23,7 @@ Design in Figma: <a href="https://www.figma.com/file/X8TYRlTNznfcTjjftgyeuU/Quiz
 - React (useState and useEffect hooks, state, props)
 
 ## Setup
-To run this project, install it locally using npm:
+To run this project (after downloading and installing the packages):
 ```
-$ git clone https://github.com/alanbaltabay/mybuh-test-task.git
-$ cd mybuh-test-task
-$ npm i && npm run dev
+$ npm run dev
 ```
