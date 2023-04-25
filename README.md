@@ -26,5 +26,6 @@ Design in Figma: <a href="https://www.figma.com/file/X8TYRlTNznfcTjjftgyeuU/Quiz
 To run this project, install it locally using npm:
 ```
 $ git clone https://github.com/alanbaltabay/mybuh-test-task.git
+$ cd mybuh-test-task
 $ npm i && npm run dev
 ```
