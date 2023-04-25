@@ -23,6 +23,6 @@ https://www.figma.com/file/tPaJ1CFVu5rAitBtdvGzyn/MyBuhTest-(Copy)?node-id=0%3A1
 To run this project, install it locally using npm:
 
 ```
-$ npm install
-$ npm run dev
+$ git clone https://github.com/alanbaltabay/mybuh-test-task.git
+$ npm i && npm run dev
 ```
